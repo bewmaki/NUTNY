@@ -3,34 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MY PROFILE HONNY</title>
-<meta name="description" content="โปรไฟล์สไตล์เทอร์มินัล โทนม่วง ไฟนีออน พร้อมลิงก์และ Spotify">
+<title>MY PROFILE NUTNY</title>
+<meta name="description" content="โปรไฟล์เท่ๆ โทนเขียวดำ สว่างแบบนีออน พร้อม Spotify และลิงก์ส่วนตัว">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root{
-    --bg:#0a0612;         /* พื้นหลังม่วงเข้ม */
-    --fg:#e7e3ff;         /* ตัวอักษรหลัก */
-    --muted:#b9b2e6;      /* ตัวอักษรรอง */
-    --primary:#a855f7;    /* ม่วงหลัก */
-    --primary-2:#7c3aed;  /* ม่วงไล่เฉด */
+    --bg:#030b07;
+    --fg:#e8ffe8;
+    --muted:#a9d6b1;
+    --primary:#00ff84;
+    --primary-2:#0ef37d;
   }
+
   html,body{height:100%}
   body{
     background:
-      radial-gradient(1200px 600px at -10% -10%, rgba(124,58,237,.25), transparent 60%),
-      radial-gradient(1000px 600px at 110% 110%, rgba(168,85,247,.18), transparent 60%),
+      radial-gradient(1000px 600px at -10% -10%, rgba(0,255,132,.12), transparent 60%),
+      radial-gradient(900px 600px at 110% 110%, rgba(14,243,125,.08), transparent 60%),
       var(--bg);
     color:var(--fg);
-    font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,'Liberation Mono','Courier New',monospace;
+    font-family:'JetBrains Mono', monospace;
   }
 
-  /* scanlines */
   .scanlines:before{
     content:""; position:fixed; inset:0; pointer-events:none; z-index:4;
-    background:repeating-linear-gradient(to bottom, rgba(255,255,255,.025), rgba(255,255,255,.025) 1px, transparent 2px, transparent 3px);
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,.03), rgba(255,255,255,.03) 1px, transparent 3px, transparent 4px);
     mix-blend-mode:soft-light;
   }
 
@@ -38,7 +38,7 @@
   .rain{ position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
   .drop{
     position:absolute; width:1px; height:60px;
-    background:linear-gradient(to bottom, rgba(168,85,247,0), rgba(168,85,247,.7));
+    background:linear-gradient(to bottom, rgba(0,255,132,0), rgba(0,255,132,.8));
     filter:blur(.4px); opacity:.55; animation:fall linear infinite;
   }
   @keyframes fall{
@@ -46,105 +46,128 @@
     100%{ transform:translateY(110vh); opacity:.7 }
   }
 
-  a{ text-decoration:underline; text-decoration-color:rgba(231,227,255,.35) }
-  a:hover{ text-decoration-color:rgba(231,227,255,.95) }
+  a{ text-decoration:underline; text-decoration-color:rgba(0,255,132,.4) }
+  a:hover{ text-decoration-color:rgba(0,255,132,1) }
 
   .card{
-    background:rgba(22, 12, 40, .55);
-    border:1px solid rgba(168,85,247,.25);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 0 0 1px rgba(168,85,247,.2), 0 20px 40px -20px rgba(124,58,237,.45);
+    position:relative;
+    background:rgba(6,20,10,.65);
+    border:1px solid rgba(0,255,132,.2);
+    backdrop-filter:blur(8px);
+    overflow:hidden;
   }
 
-  .logo span{ display:inline-block; }
-  .logo span:nth-child(1){ color:#f0abfc }
-  .logo span:nth-child(2){ color:#d8b4fe }
-  .logo span:nth-child(3){ color:#c4b5fd }
-  .logo span:nth-child(4){ color:#a78bfa }
-  .logo span:nth-child(5){ color:#8b5cf6 }
-  .logo span:nth-child(6){ color:#7c3aed }
+  /* เส้นไฟวิ่งรอบกรอบ */
+  .card::before {
+    content:"";
+    position:absolute; inset:0;
+    background:conic-gradient(from 0deg, transparent 0deg, var(--primary) 90deg, transparent 180deg, var(--primary-2) 270deg, transparent 360deg);
+    animation:rotateLight 6s linear infinite;
+    mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    -webkit-mask-composite:destination-out;
+    padding:2px;
+    border-radius:inherit;
+  }
+  @keyframes rotateLight {
+    to { transform:rotate(360deg); }
+  }
+
+  .logo span{ display:inline-block; animation:neonFlicker 5s infinite alternate; }
+  @keyframes neonFlicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity:1; text-shadow:0 0 8px #00ff84, 0 0 20px #00ff84; }
+    20%, 24%, 55% { opacity:0.5; text-shadow:none; }
+  }
+
+  .logo span:nth-child(1){ color:#afffaf }
+  .logo span:nth-child(2){ color:#8affc0 }
+  .logo span:nth-child(3){ color:#64f7a6 }
+  .logo span:nth-child(4){ color:#38e38b }
+  .logo span:nth-child(5){ color:#12c06f }
+  .logo span:nth-child(6){ color:#00a65a }
 
   .btn-primary{
     background:linear-gradient(180deg, var(--primary), var(--primary-2));
-    color:#120a1f; font-weight:700;
-    border-radius:12px; padding:.65rem 1rem; display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
-    box-shadow: 0 10px 30px -12px rgba(168,85,247,.65), inset 0 0 0 1px rgba(255,255,255,.2);
+    color:#002b17; font-weight:700;
+    border-radius:12px; padding:.65rem 1rem;
+    display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+    box-shadow:0 10px 30px -12px rgba(0,255,132,.65), inset 0 0 0 1px rgba(255,255,255,.2);
     text-decoration:none !important;
   }
-  .btn-primary:hover{ filter:saturate(1.2) brightness(1.05) }
+  .btn-primary:hover{ filter:brightness(1.1) saturate(1.2); }
 
   .divider{
-    height:1px; background:linear-gradient(90deg, rgba(168,85,247,0), rgba(168,85,247,.4), rgba(168,85,247,0));
+    height:1px; background:linear-gradient(90deg, rgba(0,255,132,0), rgba(0,255,132,.4), rgba(0,255,132,0));
   }
 
-  /* โลโก้ Glow */
-  .logo-glow{
-    text-shadow: 0 0 10px rgba(168,85,247,.8), 0 0 25px rgba(124,58,237,.6);
-    animation:logoPulse 2.8s ease-in-out infinite;
-  }
-  @keyframes logoPulse{
-    0%,100% { text-shadow: 0 0 6px #a855f7, 0 0 20px #7c3aed; }
-    50%     { text-shadow: 0 0 16px #c084fc, 0 0 35px #9333ea; }
-  }
-
-  /* Avatar Glow */
   .avatar-glow{
     border-radius:50%;
-    box-shadow:0 0 20px #a855f7, 0 0 40px #7c3aed;
+    box-shadow:0 0 20px #00ff84,0 0 40px #00a65a;
     animation:pulseGlow 3s ease-in-out infinite;
   }
   @keyframes pulseGlow{
-    0%,100%{ box-shadow:0 0 10px #a855f7, 0 0 20px #7c3aed; }
-    50%{ box-shadow:0 0 25px #c084fc, 0 0 50px #a855f7, 0 0 80px #7c3aed; }
+    0%,100%{ box-shadow:0 0 10px #00ff84,0 0 20px #00a65a; }
+    50%{ box-shadow:0 0 25px #64f7a6,0 0 50px #12c06f,0 0 80px #00ff84; }
   }
 
-  /* Spotify wrapper: กรอบม่วงนีออน + ตัดขอบพอดี */
+  /* Spotify */
   .spotify-wrap{
     position:relative;
     border-radius:14px;
     padding:2px;
-    background:linear-gradient(90deg,#7c3aed,#a855f7);
-    box-shadow:0 0 20px #a855f7,0 0 40px #9333ea,0 0 60px #7e22ce;
+    background:linear-gradient(90deg,#00ff84,#12c06f);
+    box-shadow:0 0 25px #00ff84,0 0 45px #12c06f;
     overflow:hidden;
   }
   .spotify-embed{
     display:block;
     width:100%;
-    height:352px;       /* สูงพอดีสำหรับอัลบั้ม (เห็นรายการเพลง) */
+    height:152px;
     border:0;
     border-radius:12px;
   }
 
-  /* มือถือ */
+  /* Cursor effect */
+  .terminal-cursor::after {
+    content:"▮";
+    animation:blink 0.8s step-end infinite;
+    color:var(--primary);
+    margin-left:4px;
+  }
+  @keyframes blink {
+    50% { opacity:0; }
+  }
+
+  /* Responsive */
   @media (max-width:768px){
     .mobile-container{ padding-inline:1rem; }
     .mobile-gap{ gap:1rem !important; }
     .logo{ font-size:2rem !important; }
     .avatar{ width:96px; height:96px; }
     .card{ padding:1rem !important; }
-    .spotify-embed{ height:160px; }   /* อัลบั้มบนจอเล็ก */
+    .spotify-embed{ height:118px; }
   }
 </style>
 </head>
 <body class="scanlines">
-  <!-- ฝนวิบวับ -->
   <div class="rain" id="rain"></div>
 
   <div class="relative z-10 max-w-5xl mx-auto mobile-container px-4 py-6 md:py-10">
     <div class="flex flex-col md:flex-row mobile-gap md:gap-6">
       <!-- Sidebar -->
       <aside class="w-full md:w-60 shrink-0 md:text-left text-center">
-        <div class="logo logo-glow text-3xl md:text-4xl font-extrabold tracking-tight leading-none mb-4 md:mb-6">
-          <span>H</span><span>O</span><span>N</span><span>N</span><span>Y</span><span>!</span>
+        <div class="logo text-3xl md:text-4xl font-extrabold tracking-tight leading-none mb-4 md:mb-6">
+          <span>N</span><span>U</span><span>T</span><span>N</span><span>Y</span><span>!</span>
         </div>
 
-        <img src="https://img5.pic.in.th/file/secure-sv1/IMG_20250203_213248_990.webp"
+        <img src="https://img2.pic.in.th/pic/1000208055.jpg"
           alt="avatar"
           class="avatar w-24 h-24 md:w-28 md:h-28 mx-auto md:mx-0 object-cover mb-4 md:mb-6 avatar-glow">
 
         <ul class="space-y-2 text-[15px]">
           <li>💻 <a href="https://hyper.sig-ma.shop" target="_blank" rel="noreferrer">hyper-x</a></li>
-          <li>📸 <a href="https://www.instagram.com/bxw_.m" target="_blank" rel="noreferrer">instagram</a></li>
+          <li>📸 <a href="https://www.instagram.com/_nanthawat_2546" target="_blank" rel="noreferrer">instagram</a></li>
+          <li>🗨️ <a href="https://www.facebook.com/share/19Yg3tP24r" target="_blank" rel="noreferrer">facebook</a></li>
         </ul>
 
         <div class="md:hidden my-5 divider"></div>
@@ -152,11 +175,11 @@
 
       <!-- Main -->
       <main class="flex-1 space-y-4 md:space-y-6">
-        <!-- Spotify (อัลบั้ม + ธีมม่วง) -->
+        <!-- Spotify -->
         <section class="no-print">
           <div class="spotify-wrap">
             <iframe class="spotify-embed"
-              src="https://open.spotify.com/embed/album/5ZpEle3DBlJVECVVs8heiH"
+              src="https://open.spotify.com/embed/track/0Eqm1msB6wpMo9PgMOsAIx"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"></iframe>
           </div>
@@ -164,7 +187,7 @@
 
         <!-- Intro -->
         <section class="card rounded-xl p-4 md:p-5">
-          <div class="text-[15px] leading-7">Hi, i'm <span class="font-semibold">HONNY</span>.</div>
+          <div class="text-[15px] leading-7 terminal-cursor">Hi, i'm <span class="font-semibold">NUTNY</span></div>
           <div class="divider my-3 md:my-4"></div>
           <div class="text-[15px] leading-7">
             <div class="mb-2 font-semibold text-[16px]">My Shop</div>
@@ -177,8 +200,8 @@
         <section class="card rounded-xl p-4 md:p-5">
           <div class="font-semibold mb-2">จากใจผู้ชายคนนี้</div>
           <ul class="list-disc pl-6 space-y-1 text-[15px]">
-            <li>เขียนจากไข่ที่ไร้หมอยส่งถึงหอยที่ไร้ขน</li>
-            <li>ผมชอบหีและชอบหีมากๆ ถ้าได้เลียจะเลียให้ตั้งแต่ลูกบิดประตูยันซอกตีน</li>
+            <li>เขียนจากใจ ถึงใครบางคนที่หายไป</li>
+            <li>ชีวิตมันก็เหมือนโค้ด — debug ไปเรื่อย จนกว่าจะดีพอ</li>
           </ul>
         </section>
 
@@ -187,22 +210,18 @@
           <div class="font-semibold mb-2">Contact</div>
           <div class="text-[15px] leading-7">
             <div>Email: <a href="mailto:songdohe11@gmail.com">songdohe11@gmail.com</a></div>
-            <div>Discord: <span class="select-all">hon_.xyz</span></div>
           </div>
         </section>
 
         <footer class="pt-2 text-center text-sm" style="color:var(--muted)">
-          © <span id="year"></span> HONNY — love HEE.
+          © <span id="year"></span> NUTNY
         </footer>
       </main>
     </div>
   </div>
 
   <script>
-    // ปีปัจจุบัน
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ฝน: ลดจำนวนบนมือถือให้ลื่น
     const container = document.getElementById('rain');
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const drops = isMobile ? Math.min(80, Math.floor(window.innerWidth / 10))

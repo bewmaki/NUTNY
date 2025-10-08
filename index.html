@@ -50,27 +50,11 @@
   a:hover{ text-decoration-color:rgba(0,255,132,1) }
 
   .card{
-    position:relative;
     background:rgba(6,20,10,.65);
     border:1px solid rgba(0,255,132,.2);
     backdrop-filter:blur(8px);
-    overflow:hidden;
-  }
-
-  /* เส้นไฟวิ่งรอบกรอบ */
-  .card::before {
-    content:"";
-    position:absolute; inset:0;
-    background:conic-gradient(from 0deg, transparent 0deg, var(--primary) 90deg, transparent 180deg, var(--primary-2) 270deg, transparent 360deg);
-    animation:rotateLight 6s linear infinite;
-    mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask-composite:exclude;
-    -webkit-mask-composite:destination-out;
-    padding:2px;
-    border-radius:inherit;
-  }
-  @keyframes rotateLight {
-    to { transform:rotate(360deg); }
+    border-radius:12px;
+    box-shadow:0 0 12px rgba(0,255,132,.2);
   }
 
   .logo span{ display:inline-block; animation:neonFlicker 5s infinite alternate; }
@@ -78,13 +62,6 @@
     0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity:1; text-shadow:0 0 8px #00ff84, 0 0 20px #00ff84; }
     20%, 24%, 55% { opacity:0.5; text-shadow:none; }
   }
-
-  .logo span:nth-child(1){ color:#afffaf }
-  .logo span:nth-child(2){ color:#8affc0 }
-  .logo span:nth-child(3){ color:#64f7a6 }
-  .logo span:nth-child(4){ color:#38e38b }
-  .logo span:nth-child(5){ color:#12c06f }
-  .logo span:nth-child(6){ color:#00a65a }
 
   .btn-primary{
     background:linear-gradient(180deg, var(--primary), var(--primary-2));
@@ -127,6 +104,27 @@
     border-radius:12px;
   }
 
+  /* Contact icons (enlarged 1.4x) */
+  .contact-icon img {
+    width:40px;
+    height:40px;
+    filter: drop-shadow(0 0 6px rgba(0,255,132,.6)) brightness(1);
+    transition: all 0.3s ease;
+  }
+  .contact-icon:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 10px rgba(0,255,132,1)) brightness(1.2);
+  }
+
+  /* Logo next to the shop button */
+  .logo-shop {
+    height:42px;               /* สูงใกล้เคียงปุ่ม */
+    margin-left:12px;          /* เว้นระยะจากปุ่ม */
+    vertical-align:middle;
+    border-radius:8px;
+    filter: drop-shadow(0 0 6px rgba(0,255,132,.7));
+  }
+
   /* Cursor effect */
   .terminal-cursor::after {
     content:"▮";
@@ -146,6 +144,7 @@
     .avatar{ width:96px; height:96px; }
     .card{ padding:1rem !important; }
     .spotify-embed{ height:118px; }
+    .logo-shop{ height:34px; } /* ย่อบนมือถือ */
   }
 </style>
 </head>
@@ -163,12 +162,6 @@
         <img src="https://img2.pic.in.th/pic/1000208055.jpg"
           alt="avatar"
           class="avatar w-24 h-24 md:w-28 md:h-28 mx-auto md:mx-0 object-cover mb-4 md:mb-6 avatar-glow">
-
-        <ul class="space-y-2 text-[15px]">
-          <li>💻 <a href="https://hyper.sig-ma.shop" target="_blank" rel="noreferrer">hyper-x</a></li>
-          <li>📸 <a href="https://www.instagram.com/_nanthawat_2546" target="_blank" rel="noreferrer">instagram</a></li>
-          <li>🗨️ <a href="https://www.facebook.com/share/19Yg3tP24r" target="_blank" rel="noreferrer">facebook</a></li>
-        </ul>
 
         <div class="md:hidden my-5 divider"></div>
       </aside>
@@ -191,25 +184,38 @@
           <div class="divider my-3 md:my-4"></div>
           <div class="text-[15px] leading-7">
             <div class="mb-2 font-semibold text-[16px]">My Shop</div>
-            <a href="https://hyperx.osnvc.com/" target="_blank" rel="noopener" class="btn-primary w-full md:w-auto">🛒 เข้า Hyper-x Shop</a>
+            <!-- ปุ่ม + โลโก้ -->
+            <div class="flex items-center">
+              <a href="https://hyperx.osnvc.com/" target="_blank" rel="noopener" class="btn-primary w-full md:w-auto">🛒 เข้า Hyper-x Shop</a>
+              <img src="https://img2.pic.in.th/pic/1000199121.png" alt="Hyper-x Logo" class="logo-shop">
+            </div>
             <div class="mt-2 text-[14px]" style="color:var(--muted)">[จำหน่ายโปรแกรมช่วยเล่น ROV]</div>
           </div>
         </section>
 
         <!-- Blog -->
         <section class="card rounded-xl p-4 md:p-5">
-          <div class="font-semibold mb-2">จากใจผู้ชายคนนี้</div>
-          <ul class="list-disc pl-6 space-y-1 text-[15px]">
-            <li>เขียนจากใจ ถึงใครบางคนที่หายไป</li>
-            <li>ชีวิตมันก็เหมือนโค้ด — debug ไปเรื่อย จนกว่าจะดีพอ</li>
-          </ul>
+          <div class="font-semibold mb-2">หวัดดีฮ้าฟฟฟฟู้ววว</div>
+          <li>🗨️ชื่อตี๋นัทนะฮ้าฟฟฟฟ ฝากตัวด้วยนะฮ้าฟฟฟู้วววว</li>
+          <li>เขียนจากไข่ที่ไร้หมอย ส่งถึงหอยที่ไร้ขน </li>
+          <ul class="list-disc pl-6 space-y-1 text-[15px]"></ul>
         </section>
 
         <!-- Contact -->
         <section class="card rounded-xl p-4 md:p-5">
           <div class="font-semibold mb-2">Contact</div>
           <div class="text-[15px] leading-7">
-            <div>Email: <a href="mailto:songdohe11@gmail.com">songdohe11@gmail.com</a></div>
+            <div class="flex items-center gap-5 mt-3">
+              <a href="https://www.instagram.com/_nanthawat_2546" target="_blank" class="contact-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+              </a>
+              <a href="https://www.facebook.com/share/19Yg3tP24r" target="_blank" class="contact-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+              </a>
+              <a href="https://discord.com/users/" target="_blank" class="contact-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
+              </a>
+            </div>
           </div>
         </section>
 
